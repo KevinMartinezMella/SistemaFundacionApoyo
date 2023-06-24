@@ -1,0 +1,71 @@
+{% extends 'base/baseInicio.html' %}
+{% load static %}
+{% block titulo %}
+Inicio
+{% endblock %}
+{% block contenido %}
+<div class="main-content">
+<section class="section">
+    <div class="section-header">
+        <h1>Histórico de Aportes</h1>
+    </div>
+    <div class="section-body">
+        <div class="text-right">
+            <button data-target="#exampleModalCenter" data-toggle="modal" class="btn-primary mr-5 mb-3"><i class="fas fa-dollar-sign"></i> Realizar Aporte</button>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <th scope="col">Id Aporte</th>
+                    <th scope="col">Monto Aporte</th>
+                    <th scope="col">Fecha Aporte</th>
+                    <th scope="col">TIpo Tarjeta</th>
+                </thead>
+                <tbody>
+                    {% for a in aportes %}
+                    <tr>
+                        <td>{{ a.id }}</td>
+                        <td>{{ a.montoAporte }}</td>
+                        <td>{{ a.fechaAporte }}</td>
+                        <td>{{ a.tipo.nombreTipo }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Realizar Aporte</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form method="POST" action="{% url 'aportar' %}">
+            <div class="modal-body">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="">Monto a Aportar</label>
+                    <input type="text" class="form-control" name="monto" placeholder="$1.000.000">
+                </div>
+                <div class="form-group">
+                    <label for="">Tarjeta</label>
+                    <select class="form-control" name="tipo">
+                        <option value="1">{{ aportador.numeroTarjeta }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Aportar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

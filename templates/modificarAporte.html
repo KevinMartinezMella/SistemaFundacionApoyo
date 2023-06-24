@@ -1,0 +1,75 @@
+{% extends 'base/baseInicio.html' %}
+{% load static %}
+{% block titulo %}
+Modificar
+{% endblock %}
+{% block contenido %}
+<div class="main-content">
+    <section class="section">
+      <div class="section-header">
+        <h1>Modificar Aportes</h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item active"><a href="#">Inicio</a></div>
+          <div class="breadcrumb-item">Modificar Aportes</div>
+        </div>
+      </div>
+
+      <div class="section-body">
+        <h2 class="section-title">Datos</h2>
+        <p class="section-lead">
+          Actualiza tus Datos de Aporte.
+        </p>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card card-large-icons">
+              <div class="card-icon bg-primary text-white">
+                <i class="fas fa-user"></i>
+              </div>
+              <div class="card-body">
+                <h4>{{ request.session.nombre }}</h4>
+                <p>Aportador Fundación Apoyo.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card card-large-icons">
+              <div class="card-icon bg-primary text-white">
+                <i class="fas fa-calendar"></i>
+              </div>
+              <div class="card-body">
+                <h4>Fecha Creación</h4>
+                <p>{{ aportador.fechaCreacion }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card card-large-icons">
+              <div class="card-icon bg-primary text-white">
+                <i class="fas fa-credit-card"></i>
+              </div>
+              <div class="card-body">
+                <h4>Tarjeta {{ aportador.numeroTarjeta }}</h4>
+                <p>Método de Pago Principal</p>
+                <a href="" class="card-cta">Cambiar Tarjeta <i class="fas fa-chevron-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card card-large-icons">
+              <div class="card-icon bg-primary text-white">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+              <div class="card-body">
+                <h4>Monto Aporte Mensual: $ {{ aportes.montoAporte }}</h4>
+                <p>Monto Aporte Mensual de {{ request.session.nombre }}.</p>
+                <a href="" class="card-cta">Cambiar Monto <i class="fas fa-chevron-right"></i></a>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</div>
+{% endblock %}
